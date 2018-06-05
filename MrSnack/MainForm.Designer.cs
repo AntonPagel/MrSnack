@@ -52,7 +52,6 @@
             // 
             // cartListBox
             // 
-            this.cartListBox.DisplayMember = "Display";
             this.cartListBox.Location = new System.Drawing.Point(6, 19);
             this.cartListBox.Name = "cartListBox";
             this.cartListBox.Size = new System.Drawing.Size(188, 355);
@@ -79,7 +78,7 @@
             this.addToCartButton.TabIndex = 2;
             this.addToCartButton.Text = "Add To Cart";
             this.addToCartButton.UseVisualStyleBackColor = true;
-            this.addToCartButton.Click += new System.EventHandler(this.addToCartButtonClick);
+            this.addToCartButton.Click += new System.EventHandler(this.AddToCartButtonClick);
             // 
             // productsTypesComboBox
             // 
@@ -93,7 +92,7 @@
             this.productsTypesComboBox.Name = "productsTypesComboBox";
             this.productsTypesComboBox.Size = new System.Drawing.Size(187, 21);
             this.productsTypesComboBox.TabIndex = 1;
-            this.productsTypesComboBox.SelectedIndexChanged += new System.EventHandler(this.productsTypesComboBoxSelectedIndexChanged);
+            this.productsTypesComboBox.SelectedIndexChanged += new System.EventHandler(this.ProductsTypesComboBoxSelectedIndexChanged);
             // 
             // cartGroupBox
             // 
@@ -116,7 +115,7 @@
             this.payButton.TabIndex = 4;
             this.payButton.Text = "Pay";
             this.payButton.UseVisualStyleBackColor = true;
-            this.payButton.Click += new System.EventHandler(this.payButtonClick);
+            this.payButton.Click += new System.EventHandler(this.PayButtonClick);
             // 
             // minusButton
             // 
@@ -126,7 +125,7 @@
             this.minusButton.TabIndex = 3;
             this.minusButton.Text = "-";
             this.minusButton.UseVisualStyleBackColor = true;
-            this.minusButton.Click += new System.EventHandler(this.minusButtonClick);
+            this.minusButton.Click += new System.EventHandler(this.MinusButtonClick);
             // 
             // plusButton
             // 
@@ -136,7 +135,7 @@
             this.plusButton.TabIndex = 2;
             this.plusButton.Text = "+";
             this.plusButton.UseVisualStyleBackColor = true;
-            this.plusButton.Click += new System.EventHandler(this.plusButtonClick);
+            this.plusButton.Click += new System.EventHandler(this.PlusButtonClick);
             // 
             // MainForm
             // 
@@ -149,7 +148,6 @@
             this.MaximizeBox = false;
             this.Name = "MainForm";
             this.Text = "Mr. Snack";
-            this.Load += new System.EventHandler(this.MainFormLoad);
             this.productsGroupBox.ResumeLayout(false);
             this.cartGroupBox.ResumeLayout(false);
             this.ResumeLayout(false);

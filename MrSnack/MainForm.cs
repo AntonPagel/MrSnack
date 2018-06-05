@@ -17,60 +17,44 @@ namespace MrSnack
         public MainForm()
         {
             InitializeComponent();
+            productsTypesComboBox.DataSource = Enum.GetValues(typeof(ProductCategories));
             cartListBox.DataSource = controller.Cart;
         }
 
-        private void MainFormLoad(object sender, EventArgs e)
-        {
-            productsTypesComboBox.DataSource = Enum.GetValues(typeof(ProductCategories));
-        }
-
-        private void productsTypesComboBoxSelectedIndexChanged(object sender, EventArgs e)
+        private void ProductsTypesComboBoxSelectedIndexChanged(object sender, EventArgs e)
         {
             productsListBox.DataSource = controller.Products(Enum.TryParse(productsTypesComboBox.Text, out ProductCategories productCategory) ? productCategory : ProductCategories.All);
         }
 
-        private void addToCartButtonClick(object sender, EventArgs e)
+        private void AddToCartButtonClick(object sender, EventArgs e)
         {
             if (productsListBox.SelectedItem != null)
             {
                 controller.AddCartItem((Product)productsListBox.SelectedItem);
-                cartListBox.DataSource = null;
-                cartListBox.DataSource = controller.Cart;
-                cartListBox.DisplayMember = "Display";
             }
         }
 
-        private void plusButtonClick(object sender, EventArgs e)
+        private void PlusButtonClick(object sender, EventArgs e)
         {
             if (cartListBox.SelectedItem != null)
             {
-                controller.AddCartItem((Product)productsListBox.SelectedItem);
-                cartListBox.DataSource = null;
-                cartListBox.DataSource = controller.Cart;
-                cartListBox.DisplayMember = "Display";
+                controller.AddCartItem((Product)cartListBox.SelectedItem);
             }
         }
 
-        private void minusButtonClick(object sender, EventArgs e)
+        private void MinusButtonClick(object sender, EventArgs e)
         {
             if (cartListBox.SelectedItem != null)
             {
-                controller.SubtractCartItem(((CartItem)cartListBox.SelectedItem).Product);
-                cartListBox.DataSource = null;
-                cartListBox.DataSource = controller.Cart;
-                cartListBox.DisplayMember = "Display";
+                controller.RemoveCartItem(((CartItem)cartListBox.SelectedItem));
             }
         }
 
-        private void payButtonClick(object sender, EventArgs e)
+        private void PayButtonClick(object sender, EventArgs e)
         {
             if (controller.Cart.Count > 0)
             {
                 controller.ClearCart();
-                cartListBox.DataSource = null;
-                cartListBox.DataSource = controller.Cart;
-                cartListBox.DisplayMember = "Display";
             }
         }
     }

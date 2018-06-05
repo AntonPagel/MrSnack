@@ -8,9 +8,9 @@ namespace MrSnack
 {
     public class Product
     {
-        public string Name { get; }
-        public double Price { get; }
-        public ProductCategories Category { get; }
+        public string Name { get; private set; }
+        public double Price { get; private set; }
+        public ProductCategories Category { get; private set; }
 
         public Product(string name, double price, ProductCategories category)
         {

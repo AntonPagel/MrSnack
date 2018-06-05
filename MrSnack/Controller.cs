@@ -3,17 +3,18 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.ComponentModel;
 
 namespace MrSnack
 {
     public class Controller
     {
-        public List<CartItem> Cart { get; }
-        List<Product> products = new List<Product>();
+        public BindingList<CartItem> Cart { get; private set; }
+        private List<Product> products = new List<Product>();
 
         public Controller()
         {
-            Cart = new List<CartItem>();
+            Cart = new BindingList<CartItem>();
             products.AddRange(new Product[] {
                 new Product("Snickers", 1.60, ProductCategories.Sweet),
                 new Product("Mars", 1.50, ProductCategories.Sweet),
@@ -33,9 +34,10 @@ namespace MrSnack
 
         public void AddCartItem(Product product)
         {
-            if (Cart.Exists(x => x.Product == product))
+            CartItem cartItem = Cart.FirstOrDefault(x => x.Equals(product));
+            if (cartItem != null)
             {
-                Cart.First(x => x.Product == product).Number++;
+                cartItem.Number++;
             }
             else
             {
@@ -43,12 +45,15 @@ namespace MrSnack
             }
         }
 
-        public void SubtractCartItem(Product product)
+        public void RemoveCartItem(CartItem cartItem)
         {
-            Cart.First(x => x.Product == product).Number--;
-            if (Cart.First(x => x.Product == product).Number <= 0)
+            if (Cart.Contains(cartItem))
             {
-                Cart.Remove(Cart.First(x => x.Product == product));
+                cartItem.Number--;
+                if (cartItem.Number <= 0)
+                {
+                    Cart.Remove(cartItem);
+                }
             }
         }
 
