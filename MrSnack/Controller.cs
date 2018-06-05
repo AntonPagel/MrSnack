@@ -10,11 +10,26 @@ namespace MrSnack
     public class Controller
     {
         public BindingList<CartItem> Cart { get; private set; }
+        public Dictionary<double, int> Cashbox { get; set; }
         private List<Product> products = new List<Product>();
 
         public Controller()
         {
             Cart = new BindingList<CartItem>();
+            Cashbox = new Dictionary<double, int>()
+            {
+                { 20, 10 },
+                { 10, 10 },
+                { 5, 10 },
+                { 2, 10 },
+                { 1, 10 },
+                { 0.50, 100 },
+                { 0.20, 100 },
+                { 0.10, 100 },
+                { 0.05, 100 },
+                { 0.02, 100 },
+                { 0.01, 100 }
+            };
             products.AddRange(new Product[] {
                 new Product("Snickers", 1.60, ProductCategories.Sweet),
                 new Product("Mars", 1.50, ProductCategories.Sweet),
@@ -55,6 +70,11 @@ namespace MrSnack
                     Cart.Remove(cartItem);
                 }
             }
+        }
+
+        public void Pay()
+        {
+
         }
 
         public void ClearCart()
